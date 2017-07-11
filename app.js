@@ -1,4 +1,4 @@
-// Laden der Umgebungvariablen
+﻿// Laden der Umgebungvariablen
 require('dotenv-extended').load();
 
 // Importieren von notwendigen Modulen
@@ -21,8 +21,9 @@ server.post('/api/messages', connector.listen());
 //Bot einstellen mit einer Array von Funktionen
 var bot = new builder.UniversalBot(connector, [
     function (session) {
+        session.send ("Willkommen auf internetretailing.de!");
         //Kategorien werden in einem Array gespeichert
-        builder.Prompts.choice(session, 'Welche Kategorie möchten Sie sich anschauen?', CardNames, {
+        builder.Prompts.choice(session, 'Über welches Thema wollen Sie sich schlau machen?', CardNames, {
             maxRetries: 3,
             retryPrompt: 'Du hast Dich wohl vertippt. Versuch es nochmal'
         });
