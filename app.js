@@ -23,10 +23,14 @@ var bot = new builder.UniversalBot(connector, [
     function (session) {
         session.send ("Willkommen auf internetretailing.de!");
         //Kategorien werden in einem Array gespeichert
-        builder.Prompts.choice(session, 'Über welches Thema wollen Sie sich schlau machen?', CardNames, {
+            session.sendTyping();
+  setTimeout (function (){   
+        builder.Prompts.choice(
+            session, 'Über welches Thema wollen Sie sich schlau machen?', CardNames, {
             maxRetries: 3,
             retryPrompt: 'Du hast Dich wohl vertippt. Versuch es nochmal'
         });
+          },2000);
     },
 
     
@@ -38,7 +42,11 @@ var bot = new builder.UniversalBot(connector, [
 
         // attach the card to the reply message
         var msg = new builder.Message(session).addAttachment(card);
+        session.sendTyping();
+  setTimeout (function (){      
         session.send(msg);
+  },2000);
+  
     }
 ]);
 //4 Hero Cards werden zur Verfügung gestellt
